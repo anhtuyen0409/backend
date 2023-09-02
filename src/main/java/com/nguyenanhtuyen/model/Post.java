@@ -1,5 +1,6 @@
 package com.nguyenanhtuyen.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,22 +14,32 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
-public class Post {
+public class Post implements Serializable{
+	
+	private static final long serialVersionUID = 34546474787L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(updatable = false, nullable = false)
 	private Integer id;
-	private String name;
 	
+	private String name;
+
 	@Column(columnDefinition = "text")
 	private String caption;
+	
+	private String username;
 	private String location;
 	private int likes;
-	private Date postedDate;
-	private Integer userImageId;
 	
+	@CreationTimestamp
+	private Date postedDate;
+	
+	private Integer userImageId;
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "post_id")
 	private List<Comment> commentList;
@@ -36,11 +47,12 @@ public class Post {
 	public Post() {
 	}
 
-	public Post(Integer id, String name, String caption, String location, int likes, Date postedDate,
+	public Post(Integer id, String name, String caption, String username, String location, int likes, Date postedDate,
 			Integer userImageId, List<Comment> commentList) {
 		this.id = id;
 		this.name = name;
 		this.caption = caption;
+		this.username = username;
 		this.location = location;
 		this.likes = likes;
 		this.postedDate = postedDate;
@@ -110,6 +122,14 @@ public class Post {
 
 	public void setCommentList(List<Comment> commentList) {
 		this.commentList = commentList;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

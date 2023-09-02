@@ -1,5 +1,6 @@
 package com.nguyenanhtuyen.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class AppUser {
+public class AppUser implements Serializable{
+	
+	private static final long serialVersionUID = 164669782975869L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

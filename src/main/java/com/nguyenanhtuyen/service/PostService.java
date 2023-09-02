@@ -3,7 +3,7 @@ package com.nguyenanhtuyen.service;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nguyenanhtuyen.model.AppUser;
 import com.nguyenanhtuyen.model.Post;
@@ -20,6 +20,6 @@ public interface PostService {
 	
 	public Post deletePost(Post post);
 	
-	public String savePostImage(HttpServletRequest request, String fileName);
+	public String savePostImage(MultipartFile multipartFile, String fileName);
 	
 }

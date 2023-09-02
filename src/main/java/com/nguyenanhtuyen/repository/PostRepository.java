@@ -18,10 +18,10 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
 	public List<Post> findPostByUsername(@Param("username") String username);
 	
 	@Query("SELECT p FROM Post p WHERE p.id=:x")
-	public Post findPostById(@Param("x") Long id);
+	public Post findPostById(@Param("x") Integer id);
 
 	@Modifying
 	@Query("DELETE Post WHERE id=:x")
-	public void deletePostById(@Param("x") Long id);
+	public void deletePostById(@Param("x") Integer id);
 	
 }

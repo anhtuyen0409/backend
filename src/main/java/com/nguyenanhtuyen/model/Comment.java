@@ -1,5 +1,6 @@
 package com.nguyenanhtuyen.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,7 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Comment {
+public class Comment implements Serializable{
+	
+	private static final long serialVersionUID = 578890542367L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
