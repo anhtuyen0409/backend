@@ -23,22 +23,23 @@ import com.nguyenanhtuyen.util.Constants;
 
 @Service
 @Transactional
-public class PostServiceImpl implements PostService{
-	
+public class PostServiceImpl implements PostService {
+
 	@Autowired
 	private PostRepository postRepo;
 
 	@Override
-	public Post savePost(AppUser appUser, HashMap<String, String> request, String postImageName) {
+	public Post savePost(AppUser user, HashMap<String, String> request, String postImageName) {
 		String caption = request.get("caption");
 		String location = request.get("location");
 		Post post = new Post();
+		post.setName(postImageName);
 		post.setCaption(caption);
 		post.setLocation(location);
-		post.setUsername(appUser.getUsername());
+		post.setUsername(user.getUsername());
 		post.setPostedDate(new Date());
-		post.setUserImageId(appUser.getId());
-		appUser.setPost(post);
+		post.setUserImageId(user.getId());
+		user.setPost(post);
 		postRepo.save(post);
 		return post;
 	}
@@ -49,7 +50,7 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
-	public Post getPostById(Integer id) {
+	public Post getPostById(Long id) {
 		return postRepo.findPostById(id);
 	}
 
@@ -66,11 +67,12 @@ public class PostServiceImpl implements PostService{
 			return post;
 		} catch (Exception e) {
 			return null;
-		}	
+		}
 	}
 
 	@Override
 	public String savePostImage(MultipartFile multipartFile, String fileName) {
+
 		try {
 			byte[] bytes = multipartFile.getBytes();
 			Path path = Paths.get(Constants.POST_FOLDER + fileName + ".png");

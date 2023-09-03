@@ -2,7 +2,6 @@ package com.nguyenanhtuyen.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,23 +19,27 @@ public class UserRole implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(updatable = false, nullable = false)
 	private long userRoleId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
 	private AppUser appUser;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "role_id")
 	private Role role;
 
 	public UserRole() {
-
 	}
 
 	public UserRole(long userRoleId, AppUser appUser, Role role) {
 		this.userRoleId = userRoleId;
+		this.appUser = appUser;
+		this.role = role;
+	}
+
+	public UserRole(AppUser appUser, Role role) {
 		this.appUser = appUser;
 		this.role = role;
 	}

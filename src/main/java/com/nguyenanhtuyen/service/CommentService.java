@@ -1,9 +1,9 @@
 package com.nguyenanhtuyen.service;
 
-import com.nguyenanhtuyen.model.Comment;
+import com.nguyenanhtuyen.model.Post;
 
 public interface CommentService {
 
-	public void saveComment(Comment comment);
+	public void saveComment(Post post, String username, String content);
 	
 }

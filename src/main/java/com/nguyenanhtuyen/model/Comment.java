@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class Comment implements Serializable{
 	
@@ -16,30 +18,32 @@ public class Comment implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(updatable = false, nullable = false)
-	private Integer id;
+	@Column(nullable = false, updatable = false)
+	private Long id;
 	private String username;
-	
+
 	@Column(columnDefinition = "text")
 	private String content;
+
+	@CreationTimestamp
 	private Date postedDate;
-	
+
 	public Comment() {
-		
 	}
 
-	public Comment(Integer id, String username, String content, Date postedDate) {
+	public Comment(Long id, String username, String content, Date postedDate) {
+		super();
 		this.id = id;
 		this.username = username;
 		this.content = content;
 		this.postedDate = postedDate;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

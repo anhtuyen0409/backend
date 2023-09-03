@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Role implements Serializable{
 	
@@ -20,16 +22,16 @@ public class Role implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(updatable = false, nullable = false)
+	@Column(nullable = false, updatable = false)
 	private int roleId;
+
 	private String name;
-	
+
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Set<UserRole> userRoles = new HashSet<>();
 
-	public Role() {
-
-	}
+	public Role() {}
 
 	public Role(int roleId, String name, Set<UserRole> userRoles) {
 		this.roleId = roleId;
@@ -60,5 +62,5 @@ public class Role implements Serializable{
 	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
 	}
-
+	
 }
