@@ -33,7 +33,7 @@ public class EmailConstructor {
 				MimeMessageHelper email = new MimeMessageHelper(mimeMessage);
 				email.setPriority(1);
 				email.setTo(user.getEmail());
-				email.setSubject("Welcome To Orchard");
+				email.setSubject("Welcome To NAT Social Network");
 				email.setText(text, true);
 				email.setFrom(new InternetAddress(env.getProperty("support.email")));
 			}
@@ -52,7 +52,7 @@ public class EmailConstructor {
 				MimeMessageHelper email = new MimeMessageHelper(mimeMessage);
 				email.setPriority(1);
 				email.setTo(user.getEmail());
-				email.setSubject("New Password - Orchard");
+				email.setSubject("New Password - NAT Social Network");
 				email.setText(text, true);
 				email.setFrom(new InternetAddress(env.getProperty("support.email")));
 			}
@@ -70,7 +70,7 @@ public class EmailConstructor {
 				MimeMessageHelper email = new MimeMessageHelper(mimeMessage);
 				email.setPriority(1);
 				email.setTo(user.getEmail());
-				email.setSubject("Profile Update - Orchard");
+				email.setSubject("Profile Update - NAT Social Network");
 				email.setText(text, true);
 				email.setFrom(new InternetAddress(env.getProperty("support.email")));
 			}
